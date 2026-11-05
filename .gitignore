@@ -1,0 +1,27 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.local/
+evaluation/reports/
+evaluation/manifest.local.json
+*.log
+*.mp4
+*.mov
+*.mkv
+/rewindr-hoodie-reference.jpg
+
+# Local footage, machine caches, certificates, and demo tools.
+/chunks/
+/chunks_overlap5/
+/Microsoft/
+/.vscode/
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+*.cer
+*.zip
+*.exe

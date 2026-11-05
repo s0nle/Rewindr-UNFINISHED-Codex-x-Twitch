@@ -1,0 +1,11 @@
+import { readFile, writeFile } from 'node:fs/promises';
+const [recordingId,reference,question='Find visually similar encounters.',output='.local/search-diagnostics/reference-query.json']=process.argv.slice(2);
+if(!recordingId||!reference)throw new Error('Usage: node scripts/search-reference.mjs recordingId image.jpg [question] [output.json]');
+const body=new FormData();
+body.append('question',question==='-'?'':question);
+body.append('reference',new Blob([await readFile(reference)],{type:reference.toLowerCase().endsWith('.png')?'image/png':'image/jpeg'}),'reference.jpg');
+const response=await fetch(`http://127.0.0.1:3000/recordings/${recordingId}/search/reference`,{method:'POST',body,signal:AbortSignal.timeout(120000)});
+const result=await response.json();
+if(!response.ok)throw new Error(JSON.stringify(result));
+await writeFile(output,JSON.stringify(result,null,2));
+console.log(JSON.stringify({mode:result.queryMode,moments:result.moments.slice(0,10).map(m=>({rank:m.rank,start:m.startSeconds,end:m.endSeconds})),encounters:result.encounters.slice(0,10).map(m=>({candidate:m.candidateNumber,providerRank:m.bestProviderRank,start:m.startSeconds,end:m.endSeconds,matchStart:m.matchStartSeconds,matchEnd:m.matchEndSeconds}))}));

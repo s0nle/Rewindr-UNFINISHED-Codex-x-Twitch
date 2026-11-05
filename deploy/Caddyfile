@@ -1,0 +1,13 @@
+{$EBS_DOMAIN} {
+  encode zstd gzip
+  request_body {
+    max_size 51MB
+  }
+  header {
+    X-Content-Type-Options nosniff
+    Referrer-Policy no-referrer
+    -Server
+  }
+  # EBS performs JWT/agent authorization. The local upload/admin API is never exposed.
+  reverse_proxy ebs:3001
+}

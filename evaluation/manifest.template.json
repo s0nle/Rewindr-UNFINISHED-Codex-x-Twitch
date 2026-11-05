@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "recordingId": null,
+  "sourceSha256": null,
+  "durationSeconds": null,
+  "verifiedBy": "",
+  "verifiedAt": null,
+  "queries": [
+    {
+      "id": "positive-01",
+      "question": "Find when the guy wearing a Barcelona jersey approached me.",
+      "kind": "positive",
+      "visualOnly": true,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "positive-02",
+      "question": "Find the person in a red cap who handed me a bottle.",
+      "kind": "positive",
+      "visualOnly": true,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "positive-03",
+      "question": "Find when someone holding a yellow umbrella waved at me.",
+      "kind": "positive",
+      "visualOnly": true,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "positive-04",
+      "question": "Find the woman wearing a green backpack who stopped to speak to me.",
+      "kind": "positive",
+      "visualOnly": true,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "positive-05",
+      "question": "Find when the person with glasses and a striped shirt took a selfie with me.",
+      "kind": "positive",
+      "visualOnly": true,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "positive-06",
+      "question": "Find the cyclist in a blue helmet who stopped beside me.",
+      "kind": "positive",
+      "visualOnly": false,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "positive-07",
+      "question": "Find when a person carrying a skateboard pointed across the street.",
+      "kind": "positive",
+      "visualOnly": false,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "positive-08",
+      "question": "Find when someone in a white hoodie offered a fist bump.",
+      "kind": "positive",
+      "visualOnly": false,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "positive-09",
+      "question": "Find the person with a small black dog who approached me.",
+      "kind": "positive",
+      "visualOnly": false,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "positive-10",
+      "question": "Find when the person holding a pizza box laughed with me.",
+      "kind": "positive",
+      "visualOnly": false,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "absent-01",
+      "question": "Find when an astronaut in a spacesuit approached me.",
+      "kind": "absent",
+      "visualOnly": false,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "absent-02",
+      "question": "Find when someone handed me a live penguin.",
+      "kind": "absent",
+      "visualOnly": false,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    },
+    {
+      "id": "absent-03",
+      "question": "Find when a person wearing a gold crown rode past on a horse.",
+      "kind": "absent",
+      "visualOnly": false,
+      "manuallyVerified": false,
+      "expectedRanges": [],
+      "distractorRanges": [],
+      "notes": "REPLACE after watching the actual recording. Example question only; event existence is unknown."
+    }
+  ]
+}

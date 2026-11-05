@@ -1,0 +1,77 @@
+services:
+  ebs:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      args:
+        TWITCH_EBS_PUBLIC_URL: ${TWITCH_EBS_PUBLIC_URL}
+        TWITCH_EXTENSION_CLIENT_ID: ${TWITCH_EXTENSION_CLIENT_ID}
+        TWITCH_REDIRECT_URI: ${TWITCH_REDIRECT_URI:-http://localhost:3000/twitch/callback}
+    image: rewindr:local
+    env_file: ../.env
+    environment:
+      EBS_BIND_ADDRESS: 0.0.0.0
+      TWITCH_EBS_PORT: 3001
+      DATA_DIR: /app/.local/rewindr
+    volumes:
+      - rewindr-data:/app/.local/rewindr
+    expose: ["3001"]
+    restart: unless-stopped
+    read_only: true
+    tmpfs: ["/tmp:size=128m,noexec,nosuid"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/ready',{signal:AbortSignal.timeout(10000)}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 12s
+      retries: 3
+  worker:
+    image: rewindr:local
+    env_file: ../.env
+    environment:
+      DATA_DIR: /app/.local/rewindr
+    command: ["node", "dist/src/worker.js"]
+    volumes:
+      - rewindr-data:/app/.local/rewindr
+    depends_on:
+      ebs:
+        condition: service_healthy
+    restart: unless-stopped
+    stop_grace_period: 3m
+    read_only: true
+    tmpfs: ["/tmp:size=128m,noexec,nosuid"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+  https:
+    image: caddy:2
+    environment:
+      EBS_DOMAIN: ${EBS_DOMAIN}
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      ebs:
+        condition: service_healthy
+    restart: unless-stopped
+  # Opt-in: this profile deletes eligible Rewindr data after the retention horizon.
+  retention:
+    profiles: ["retention"]
+    image: rewindr:local
+    env_file: ../.env
+    environment:
+      DATA_DIR: /app/.local/rewindr
+    command: ["node", "dist/scripts/retention.js", "--watch", "--all-owners", "--days", "14", "--apply"]
+    volumes:
+      - rewindr-data:/app/.local/rewindr
+    restart: unless-stopped
+    read_only: true
+    tmpfs: ["/tmp:size=128m,noexec,nosuid"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+volumes:
+  rewindr-data:
+  caddy-data:
+  caddy-config:

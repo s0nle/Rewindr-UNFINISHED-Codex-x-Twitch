@@ -1,0 +1,2 @@
+export function clipClock(value:number){const ticks=Math.round(value*10),s=ticks/10;return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor(s%3600/60)).padStart(2,'0')}:${(s%60).toFixed(1).padStart(4,'0')}`;}
+export function parseClipTime(input:string){const parts=input.trim().split(':');if(parts.length<1||parts.length>3||parts.some((p,i)=>!(i===parts.length-1?/^\d+(\.\d+)?$/:/^\d+$/).test(p))||parts.some((p,i)=>i>0&&Number(p)>=60))return NaN;return parts.reduce((sum,p)=>sum*60+Number(p),0);}
